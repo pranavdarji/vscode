@@ -49,7 +49,7 @@ export class WorkspaceEditingService implements IWorkspaceEditingService {
 		@ICommandService private readonly commandService: ICommandService,
 		@IFileService private readonly fileService: IFileService,
 		@ITextFileService private readonly textFileService: ITextFileService,
-		@IWindowsService private readonly windowsService: IWindowsService,
+		@IWindowService private readonly windowsService: IWindowsService,
 		@IWorkspacesService private readonly workspaceService: IWorkspacesService,
 		@IWorkbenchEnvironmentService private readonly environmentService: IWorkbenchEnvironmentService,
 		@IFileDialogService private readonly fileDialogService: IFileDialogService,
@@ -134,7 +134,7 @@ export class WorkspaceEditingService implements IWorkspaceEditingService {
 					const newWorkspaceIdentifier = await this.workspaceService.getWorkspaceIdentifier(newWorkspacePath);
 
 					const label = this.labelService.getWorkspaceLabel(newWorkspaceIdentifier, { verbose: true });
-					this.windowsService.addRecentlyOpened([{ label, workspace: newWorkspaceIdentifier }]);
+					this.windowService.addRecentlyOpened([{ label, workspace: newWorkspaceIdentifier }]);
 
 					this.workspaceService.deleteUntitledWorkspace(workspaceIdentifier);
 				} catch (error) {
